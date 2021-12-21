@@ -1,0 +1,36 @@
+{
+    "id": "tst",
+    "prj": "prj",
+    "type": "manual",
+    "states": {
+        "init": {
+            "key": "init",
+            "transitions": {
+                "init=>[evCheck/efConfig]=>wait": {
+                    "nextstatename": "wait",
+                    "input": "evCheck",
+                    "output": "efConfig"
+                }
+            }
+        },
+        "final": {
+            "key": "final",
+            "transitions": {}
+        },
+        "wait": {
+            "key": "wait",
+            "transitions": {
+                "wait=>[evComplete/efReport]=>final": {
+                    "nextstatename": "final",
+                    "input": "evComplete",
+                    "output": "efReport"
+                },
+                "wait=>[evReplay/efRequest]=>wait": {
+                    "nextstatename": "wait",
+                    "input": "evReplay",
+                    "output": "efRequest"
+                }
+            }
+        }
+    }
+}
