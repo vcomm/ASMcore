@@ -9,6 +9,10 @@
   "keywords": [],
   "author": "Yakov Liskoff",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "bugs": {
     "url": "https://github.com/vcomm/ASMcore/issues"
   },
