@@ -13,7 +13,7 @@ class serviceManager extends serviceDeploy {
                   setTimeout(() => resolve(cntx), 3000)
               })
               .then(data => {
-                  console.log(`: Run async func: Anominus`);
+                  console.log(`: Run async func: Anominus 1`);
               }) 
           },
           (cntx)=>cntx.setState(cntx.getNextSate()),
@@ -27,12 +27,11 @@ class serviceManager extends serviceDeploy {
         this.emitOn('efRequest', [
           (cntx)=>console.log('efRequest'),
           async (cntx)=>{
-              return new Promise(resolve => {
-                  setTimeout(() => resolve(cntx), 1000)
-              })
-              .then(data => {
-                  console.log(`: Run async func: Anominus`);
-              }) 
+            const promise = new Promise((resolve,reject) => {
+                setTimeout(() => resolve(cntx), 1000)
+            })
+            const data = await promise
+            console.log(`: Run async func: Anominus 2`);
           },
           (cntx)=>cntx.setState(cntx.getNextSate()),
           (cntx)=>cntx.unlock()
