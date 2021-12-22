@@ -11,7 +11,7 @@ class serviceDeploy extends aChainEngine {
 
     }
     /** Implementation required */
-    initFSM() {
+    initLogic() {
         throw new Error('You have to implement the method doSomething!');
     }
 }

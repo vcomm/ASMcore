@@ -1,10 +1,10 @@
 {
   "name": "@vcomm/asmcore",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Adaptive state machine core",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/manual.spec"
   },
   "keywords": [],
   "author": "Yakov Liskoff",

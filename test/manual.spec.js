@@ -5,7 +5,7 @@ class serviceManager extends serviceDeploy {
     constructor() {
         super();
     }
-    initFSM() {
+    initLogic() {
         this.emitOn('efConfig', [
           (cntx)=>console.log('efConfig'),
           async (cntx)=>{
@@ -40,17 +40,17 @@ class serviceManager extends serviceDeploy {
     }
 }
 
-const content = new serviceContent(fsmLogic)
-const mng  = new serviceManager()
-mng.initFSM();
+const content  = new serviceContent(fsmLogic);
+const manager  = new serviceManager();
+manager.initLogic();
 
-async function runLoop(param, cntx) {
-    const state = await cntx.eventLoop(param, mng);
-    console.debug(` EvProc[${param}] => nextState[${state}]:`)
+async function runLoop(trig, cntx, srvmng) {
+    const state = await cntx.eventLoop(trig, srvmng);
+    console.debug(` EvProc[${trig}] => nextState[${state}]:`)
 }
 
-(async () => {
-    await runLoop('evCheck', content)
-    await runLoop('evReplay', content)
-    await runLoop('evComplete', content)
-})();
+(async (cntx, srvmng) => {
+    await runLoop('evCheck', cntx, srvmng)
+    await runLoop('evReplay', cntx, srvmng)
+    await runLoop('evComplete', cntx, srvmng)
+})(content, manager);
