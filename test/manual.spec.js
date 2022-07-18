@@ -6,7 +6,7 @@ class serviceManager extends serviceDeploy {
         super();
     }
     initLogic() {
-        this.emitOn('efConfig', [
+        this.chainOn('efConfig', [
           (cntx)=>console.log('efConfig'),
           async (cntx)=>{
               return new Promise(resolve => {
@@ -18,13 +18,13 @@ class serviceManager extends serviceDeploy {
           },
           (cntx)=>cntx.setState(cntx.getNextSate()),
           (cntx)=>cntx.unlock()
-        ], {});
-        this.emitOn('efReport', [
+        ], {}, (cntx) => console.log(`: Chain Stats: `, cntx));
+        this.chainOn('efReport', [
           (cntx)=>console.log('efReport'),
           (cntx)=>cntx.setState(cntx.getNextSate()),
           (cntx)=>cntx.unlock()
-        ], {});
-        this.emitOn('efRequest', [
+        ], {}, (cntx) => console.log(`: Chain Stats: `, cntx));
+        this.chainOn('efRequest', [
           (cntx)=>console.log('efRequest'),
           async (cntx)=>{
             const promise = new Promise((resolve,reject) => {
@@ -35,7 +35,7 @@ class serviceManager extends serviceDeploy {
           },
           (cntx)=>cntx.setState(cntx.getNextSate()),
           (cntx)=>cntx.unlock()
-        ], {});
+        ], {}, (cntx) => console.log(`: Chain Stats: `, cntx));
     }
 }
 

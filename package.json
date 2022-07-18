@@ -1,6 +1,6 @@
 {
   "name": "@vcomm/asmcore",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Adaptive state machine core",
   "main": "index.js",
   "scripts": {

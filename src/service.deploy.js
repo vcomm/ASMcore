@@ -1,4 +1,5 @@
 const { aChainEngine, asynChain } = require('@vcomm/asynchain');
+const smartChain = require('./smart.chain');
 
 class serviceDeploy extends aChainEngine {
     constructor() {
