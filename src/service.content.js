@@ -55,18 +55,19 @@ class serviceContent extends EventEmitter  {
         return null;      
     }
     async eventLoop(trig, mng) {
-        await this.lock();
-        const trans = this.transDetermine(trig);
-        if (trans) {
-            console.log(`Transition:`,trans)
-            this.setNextState(trans.nextstate);
-            mng.emitEvent(trans.output, this);
-            return trans.nextstate;
-        } else {
-            console.warn(`Error: Wrong transition input[${trig}] for current state`);
-            return NaN;
-        }        
-    }
+      await this.lock();
+      const trans = this.transDetermine(trig);
+      if (trans) {
+          console.log(`Transition:`,trans)
+          this.setNextState(trans.nextstate);
+          mng.emitEvent(trans.output, this); // should be unlock() in chain after all actions
+          return trans.nextstate;
+      } else {
+          console.warn(`Error: Wrong transition input[${trig}] for current state`);
+          this.unlock();
+          return NaN;
+      }        
+  }
     bios() {
         throw new Error('You have to implement the method doSomething!');
     }  
