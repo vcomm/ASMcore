@@ -22,7 +22,7 @@ class smartChain extends asynChain {
                     () => cntx.status.proceed ? this.runcall(item, cntx)
                         .then(
                             result => {
-                                if (result && result >= this.#skipTrigger) {
+                                if (result && result.err >= this.#skipTrigger) {
                                     console.log(`: Critical Error -> exit from chain ;`, i);
                                     cntx.status.proceed = false;
                                 } else if (result == undefined) {
@@ -43,7 +43,7 @@ class smartChain extends asynChain {
     }
 
     skipTrigger(trigger) {
-        return trigger ? this.#skipTrigger = trigger : this.#skipTrigger;
+        return this.#skipTrigger = trigger ? trigger : this.#skipTrigger;
     }
 }
 
